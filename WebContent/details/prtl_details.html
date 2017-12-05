@@ -1,0 +1,42 @@
+	<div class="modal-header">
+      <h3 class="modal-title"><div class="cross" ng-click="$close();">&times;</div></h3>
+    </div>
+    <div class="modal-body">
+     	<div class="cpntainer-fluid">
+     		<div class="row">
+     			<div class="col-xs-5">
+     				
+     				<div class="right">
+	     				<div class="">
+									<div class="item-name details-row">{{item.p_name}}</div>
+									<div class="price-container details-row"><span class="cur">$</span>
+									{{item.p_price | number:2}}</div>
+									
+									<div class="item-color">{{item.p_selected_color.name}}</div>
+									<div ng-repeat="color in item.p_available_options.colors" class="details-row color-select hand-cursor">
+										<div class="color-box" ng-style="{'background-color':'{{color.hexcode}}'}" 
+										ng-class="{'active':color.hexcode === item.p_selected_color.hexcode }" ng-click="colorSelected(color)"></div>
+									</div>
+									<div class="details-row">
+										<select ng-options="size.code as size.code for size in item.p_available_options.sizes"
+										ng-model="size"  ng-change="sizeSelected(size)"
+										ng-init="item.p_selected_size = item.p_selected_size">
+									    </select>
+								      	
+								      	<select ng-options="choice.name as choice.name for choice in quantity" ng-model="qty" 
+								      	 ng-change="qtySelected(qty)" ng-init="qty = item.p_quantity">
+									    </select>
+								      	</ul>
+									</div>
+									<div class="details-row"><button class="btn btn-primary" ng-click="addToBag()">Add To Bag</button></div>
+									<div class="details-row"><span class="link">See Product Details</span></div>
+						</div>
+	     			</div>
+     			</div>
+     			<div class="col-xs-7">
+	     			<div class="left" id="{{item.className}}">
+     				
+     				</div>
+     		</div>
+     	</div>
+    </div>

@@ -1,0 +1,70 @@
+<div class=" sw_bg1 ">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 sw-logo-container">
+					<div class="right-align"><!-- <div class="sw_logo"></div> -->
+					<div ng-click="logOut()" class="sw_text1">Log Out</div>
+					</div>
+					<h2 class="sw_text">May The Force Be With You</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="login-container">
+						<div class="login-div">
+							<div class="width30 login-div">Enter Planet Name</div>
+							<div class="width70 login-div" ng-if="isLoaded">
+								<!-- <input type="text" ng-model="planetSelected"
+								 typeahead="planet as planet.name for planet in planetList | filter:{name:$viewValue} | limitTo:8" class="form-control"> -->
+								 
+								 <tags-input ng-model="tags" 
+							                display-property="name" 
+							                placeholder="Add a planet" 
+							                on-tag-added = "tagsChanged()" 
+							                on-tag-removed = "tagsChanged()"
+							                replace-spaces-with-dashes="false"
+							                template="tag-template">
+							      <auto-complete source="planetList"
+							                     min-length="2"
+							                     load-on-focus="true"
+							                     load-on-empty="true"
+							                     max-results-to-show="32"
+							                     template="autocomplete-template"></auto-complete>
+							    </tags-input>
+							    
+	<script type="text/ng-template" id="tag-template">
+      <div class="tag-template">
+        
+          <span>{{$getDisplayText()}}</span>
+          <a class="remove-button" ng-click="$removeTag()">&#10006;</a>
+       
+      </div>
+    </script>
+							    
+	<script type="text/ng-template" id="autocomplete-template">
+      <div class="autocomplete-template">
+        
+          <span ng-bind-html="$highlight($getDisplayText())"></span>
+          <span>{{data.population}}</span>
+
+      </div>
+    </script>
+								 
+								 
+							</div>
+							
+						</div>
+						<div class="center-align">
+							<btn class="btn btn-primary" ng-click="search()" ng-disabled="tags.length>2">Search</btn>
+						</div>
+					</div>
+				</div>
+				<div class="col-cs-12" ng-if="tags && tags.length>0">
+					<h3>Search Result</h3>
+					<div ui-grid="gridOptions" class="grid"></div>
+				</div>
+			</div>
+		</div>
+		
+
+</div>
