@@ -11,7 +11,7 @@ myApp.factory('SRVC_Search', function($http, $q) {
         function getPlanetDetails() {
             var def = $q.defer();
 
-            $http.get("./data/planets.json")
+            $http.get("https://swapi.co/api/planets/")
                 .success(function(data) {
                     service.planetList = data.results;
                     def.resolve(service.planetList);

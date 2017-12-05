@@ -13,23 +13,22 @@
 					<div class="login-container">
 						<div class="login-div">
 							<div class="width30 login-div">Enter Planet Name</div>
-							<div class="width70 login-div" ng-if="isLoaded">
+							<div class="width70 login-div">
 								<!-- <input type="text" ng-model="planetSelected"
 								 typeahead="planet as planet.name for planet in planetList | filter:{name:$viewValue} | limitTo:8" class="form-control"> -->
 								 
 								 <tags-input ng-model="tags" 
 							                display-property="name" 
 							                placeholder="Add a planet" 
-							                on-tag-added = "tagsChanged()" 
-							                on-tag-removed = "tagsChanged()"
+							                on-tag-added = "tagsChanged()"
 							                replace-spaces-with-dashes="false"
 							                template="tag-template">
-							      <auto-complete source="planetList"
-							                     min-length="2"
-							                     load-on-focus="true"
-							                     load-on-empty="true"
-							                     max-results-to-show="32"
-							                     template="autocomplete-template"></auto-complete>
+							       <auto-complete source="loadPlanets($query)"
+					                    min-length="1"
+					                    load-on-focus="false"
+					                    load-on-empty="false"
+					                    max-results-to-show="32"
+					                    template="autocomplete-template"></auto-complete>
 							    </tags-input>
 							    
 	<script type="text/ng-template" id="tag-template">
@@ -55,13 +54,13 @@
 							
 						</div>
 						<div class="center-align">
-							<btn class="btn btn-primary" ng-click="search()" ng-disabled="tags.length>2">Search</btn>
+							<btn class="btn btn-primary" ng-disabled="counter>1" ng-click="searched()">Search</btn>
 						</div>
 					</div>
 				</div>
-				<div class="col-cs-12" ng-if="tags && tags.length>0">
+				<div class="col-cs-12" ng-if="tags && tags.length>0 && isSearched">
 					<h3>Search Result</h3>
-					<div ui-grid="gridOptions" class="grid"></div>
+					<div ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
 				</div>
 			</div>
 		</div>

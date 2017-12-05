@@ -58,7 +58,7 @@ tags-input {
 }
 .login-container {
     margin: 0px auto;
-    width: 30%;
+    width: 50%;
     border: 1px solid #d1cb03;
     border-radius: 25px;
     padding: 10px;
@@ -77,6 +77,12 @@ tags-input {
 .width70 {
 	width: 69%;
 	display: inline-block;
+}
+.ui-grid-header-cell {
+	background-color: #d1cb03;
+}
+:nth-child(2n).ui-grid-row .ui-grid-cell {
+	background-color: rgba(255, 253, 194, 1);
 }
 .border-bottom {
 	border-bottom: 5px solid lightgrey;

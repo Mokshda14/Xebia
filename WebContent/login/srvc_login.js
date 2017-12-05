@@ -10,7 +10,7 @@ myApp.factory('SRVC_LogIn', function($http, $q) {
         function getPersonDetails() {
             var def = $q.defer();
 
-            $http.get("./data/people.json")
+            $http.get("https://swapi.co/api/people/")
                 .success(function(data) {
                     service.personList = data.results;
                     def.resolve(data);
